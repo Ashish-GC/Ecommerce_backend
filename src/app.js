@@ -2,11 +2,12 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
-export const app = express();
+const app = express();
 
 
 app.use(cors({
-    options:process.env.Cors_Origin
+     origin:"http://localhost:5173",
+     credentials:true
 }))
 
 
@@ -18,3 +19,12 @@ app.use(express.static("public"))
 
 app.use(cookieParser())
 
+
+// routes
+
+import userRouter from "./routes/user.routes.js";
+
+ app.use("/api/v1/user",userRouter)
+
+
+ export { app };  
